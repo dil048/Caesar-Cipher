@@ -14,6 +14,8 @@ Encrypt a message by shifting the message by a given amount of time
 
 def encryption(string,rotation):
     resultString = ""
+    if rotation<0:
+        rotation = rotation +26
     for letter in string:
         # Check if the letter is upper-case
         if(isUpper(letter)):
@@ -89,19 +91,14 @@ def decryption(string,number):
     rotation = -1*number
     resultString = encryption(string,rotation)
     return resultString
-#  check to encrypt or decrypt
+
 task = input("Enter e to encrypt and d to decrypt \n")
-while(task!="e" and task!="d"):
-    task = input("Enter e to encrypt and d to decrypt \n")
-    
-#   To encrypt
 if(task=="e"):
     messageToEncrypt = input("Message to encrypt \n")
-    random_key = random.randrange(26)
+    random_key = random.randrange(27)
     encryptedMessage = encryption(messageToEncrypt,random_key)
     print("Your encrypted message is "+encryptedMessage +
             " and your key is "+ str(random_key))
-#   To decrypt
 elif(task=="d"):
     messageToDecrypt = input("Message to decrypt \n")
     key = input("Enter your key \n")
